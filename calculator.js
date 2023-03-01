@@ -1,47 +1,44 @@
-let history = [];
+const input1 = document.getElementById("input1");
+const input2 = document.getElementById("input2");
+const result = document.getElementById("result");
+const historyList = document.getElementById("history");
 
 function add() {
-    let num1 = parseFloat(document.getElementById("input1").value);
-    let num2 = parseFloat(document.getElementById("input2").value);
-    let result = num1 + num2;
-    document.getElementById("result").value = result;
-    history.push(num1 + " + " + num2 + " = " + result);
-    updateHistory();
+    const sum = parseFloat(input1.value) + parseFloat(input2.value);
+    result.value = sum;
+    addToHistory(`${input1.value} + ${input2.value} = ${sum}`);
 }
 
 function subtract() {
-    let num1 = parseFloat(document.getElementById("input1").value);
-    let num2 = parseFloat(document.getElementById("input2").value);
-    let result = num1 - num2;
-    document.getElementById("result").value = result;
-    history.push(num1 + " - " + num2 + " = " + result);
-    updateHistory();
+    const difference = parseFloat(input1.value) - parseFloat(input2.value);
+    result.value = difference;
+    addToHistory(`${input1.value} - ${input2.value} = ${difference}`);
 }
 
 function multiply() {
-    let num1 = parseFloat(document.getElementById("input1").value);
-    let num2 = parseFloat(document.getElementById("input2").value);
-    let result = num1 * num2;
-    document.getElementById("result").value = result;
-    history.push(num1 + " * " + num2 + " = " + result);
-    updateHistory();
+    const product = parseFloat(input1.value) * parseFloat(input2.value);
+    result.value = product;
+    addToHistory(`${input1.value} * ${input2.value} = ${product}`);
 }
 
 function divide() {
-    let num1 = parseFloat(document.getElementById("input1").value);
-    let num2 = parseFloat(document.getElementById("input2").value);
-    let result = num1 / num2;
-    document.getElementById("result").value = result;
-    history.push(num1 + " / " + num2 + " = " + result);
-    updateHistory();
+    const quotient = parseFloat(input1.value) / parseFloat(input2.value);
+    result.value = quotient;
+    addToHistory(`${input1.value} / ${input2.value} = ${quotient}`);
 }
 
-function updateHistory() {
-    let historyList = document.getElementById("history");
-    historyList.innerHTML = "";
-    for (let i = 0; i < history.length; i++) {
-        let listItem = document.createElement("li");
-        listItem.textContent = history[i];
-        historyList.appendChild(listItem);
-    }
+function addToHistory(calculation) {
+    const li = document.createElement("li");
+    li.innerText = calculation;
+    historyList.appendChild(li);
 }
+
+const addBtn = document.getElementById("addBtn");
+const subtractBtn = document.getElementById("subtractBtn");
+const multiplyBtn = document.getElementById("multiplyBtn");
+const divideBtn = document.getElementById("divideBtn");
+
+addBtn.addEventListener("click", add);
+subtractBtn.addEventListener("click", subtract);
+multiplyBtn.addEventListener("click", multiply);
+divideBtn.addEventListener("click", divide);
